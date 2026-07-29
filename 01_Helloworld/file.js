@@ -21,6 +21,6 @@ fs.unlinkSync("./test2.txt");
 
 console.log(fs.statSync("./test.txt"));
 
-fs.mkdirSync("my-doc");
+// fs.mkdirSync("my-doc");
 
 fs.mkdirSync("my-doc/s/t" , {recursive:true});

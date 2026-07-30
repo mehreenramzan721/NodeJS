@@ -23,6 +23,10 @@ const myServer = http.createServer((req, res)=>{
                     const username = myUrl.query.myname;
                     res.end(`Hi ${username}`)
                     break;
+                case "/search":
+                    const searchTerm = myUrl.query.q;
+                    res.end(`Search results for "${searchTerm}"`)
+                    break;
                 default:
                     res.end(`<h1>404 Page Not Found</h1>`)
             }

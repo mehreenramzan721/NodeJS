@@ -6,6 +6,7 @@ const PORT = 8622;
 
 
 // middleware
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 const users = require('./MOCK_DATA.json');
 
@@ -44,7 +45,7 @@ app.get('/api/users', (req, res) => {
 
     res.setHeader("X-myName", "John Doe"); // custom header 
     // good practice in custom headers to always add a prefix like x-  to avoid conflicts with standard headers
-    return res.status(201).json(users);
+    return res.status(200).json(users);
 });
 
 // app.get('/api/users/:id', (req, res)=>{
@@ -54,13 +55,15 @@ app.get('/api/users', (req, res) => {
 // });
 
 app.post('/api/users', (req, res) => {
-
-    // TODO : create new user 
     const body = req.body;
-    users.push({ ...body, id: users.length + 1 });
+    if(!body || !body.first_name || !body.last_name || !body.email || !body.gender || !body.job_title){
+        return res.status(400).json({ status: 'error', message: 'Missing required fields' });
+    }
+    const newId = users.length ? Math.max(...users.map(u => u.id)) + 1 : 1;
+    users.push({ ...body, id: newId });
     fs.writeFile('./MOCK_DATA.json', JSON.stringify(users), (err) => {
         if (err) return res.status(500).json({ status: 'error', error: err.message });
-        return res.json({ status: 'success', id: users.length });
+        return res.json({ status: 'success', id: newId });
     });
 });
 
@@ -77,8 +80,13 @@ app.post('/api/users', (req, res) => {
 
 app.route('/api/users/:id')
     .get((req, res) => {
+
         const id = Number(req.params.id);
         const user = users.find(u => u.id === id);
+        if (!user) {
+            return res.status(404)
+                .json({ status: 'error', message: 'User not found' });
+        }
         return res.json(user);
     })
     .patch((req, res) => {
@@ -86,7 +94,8 @@ app.route('/api/users/:id')
         const index = users.findIndex(u => u.id === id);
         if (index === -1) return res.status(404).json({ status: 'error', message: 'User not found' });
 
-        users[index] = { ...users[index], ...req.body };
+        const { id: _ignore, ...safeBody } = req.body;
+        users[index] = { ...users[index], ...safeBody };
         fs.writeFile('./MOCK_DATA.json', JSON.stringify(users), (err) => {
             if (err) return res.status(500).json({ status: 'error', error: err.message });
             return res.json({ status: 'success', id });

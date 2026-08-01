@@ -12,7 +12,7 @@ const users = require('./MOCK_DATA.json');
 // custom middleware
 
 app.use((req,res,next) => {
-    fs.appendFile('log.text', `/n${new Date()}: ${req.method} , ${req.path} ${req.url}\n`, (err) => {
+    fs.appendFile('log.text', `\n${new Date()}: ${req.method} , ${req.path} ${req.url}\n`, (err) => {
         if (err) console.error('Error writing to log file:', err);
     });
     console.log("Hello from middleware 1 ")
@@ -42,7 +42,7 @@ app.get('/users', (req, res) => {
 
 app.get('/api/users', (req, res) => {
 
-    res.setHeaders("X-myName", "John Doe"); // custom header 
+    res.setHeader("X-myName", "John Doe"); // custom header 
     // good practice in custom headers to always add a prefix like x-  to avoid conflicts with standard headers
     return res.status(201).json(users);
 });

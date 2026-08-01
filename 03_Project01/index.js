@@ -41,6 +41,9 @@ app.get('/users', (req, res) => {
 // REST API routes 
 
 app.get('/api/users', (req, res) => {
+
+    res.setHeaders("X-myName", "John Doe"); // custom header 
+    // good practice in custom headers to always add a prefix like x-  to avoid conflicts with standard headers
     return res.json(users);
 });
 
@@ -51,6 +54,7 @@ app.get('/api/users', (req, res) => {
 // });
 
 app.post('/api/users', (req, res) => {
+
     // TODO : create new user 
     const body = req.body;
     users.push({ ...body, id: users.length + 1 });

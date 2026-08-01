@@ -44,7 +44,7 @@ app.get('/api/users', (req, res) => {
 
     res.setHeaders("X-myName", "John Doe"); // custom header 
     // good practice in custom headers to always add a prefix like x-  to avoid conflicts with standard headers
-    return res.json(users);
+    return res.status(201).json(users);
 });
 
 // app.get('/api/users/:id', (req, res)=>{

@@ -6,8 +6,27 @@ const PORT = 8622;
 
 
 // middleware
-app.use(express(urlencoded({ extended: false })));
+app.use(express.urlencoded({ extended: false }));
 const users = require('./MOCK_DATA.json');
+
+// custom middleware
+
+app.use((req,res,next) => {
+    fs.appendFile('log.text', `/n${new Date()}: ${req.method} , ${req.path} ${req.url}\n`, (err) => {
+        if (err) console.error('Error writing to log file:', err);
+    });
+    console.log("Hello from middleware 1 ")
+    req.myUsername = 'John Doe';
+    //this below retrun will only end the code here so we have to just call next not this line 
+    // return res.json({status: 'success', message: 'Hello from middleware 1'});
+    next();
+})
+
+app.use((req,res,next) => {
+    console.log("Hello from middleware 2 "+ req.myUsername)
+    next();
+})
+
 // routes
 
 app.get('/users', (req, res) => {

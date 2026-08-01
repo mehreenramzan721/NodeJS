@@ -33,7 +33,12 @@ app.get('/api/users', (req, res) => {
 
 app.post('/api/users', (req, res) => {
     // TODO : create new user 
-    return res.json({ status: pending });
+    const body = req.body;
+    users.push({ ...body, id: users.length + 1 });
+    fs.writeFile('./MOCK_DATA.json', JSON.stringify(users), (err) => {
+        if (err) return res.status(500).json({ status: 'error', error: err.message });
+        return res.json({ status: 'success', id: users.length });
+    });
 });
 
 
@@ -54,14 +59,25 @@ app.route('/api/users/:id')
         return res.json(user);
     })
     .patch((req, res) => {
-        // TODO : update user 
-        const body = req.body;
-        users.push({ ...body, id: users.length + 1 });
-        fs.writeFile('./MOCK_DATA.json', JSON.stringify(users));
-        return res.json({ status: success, id: users.length });
-    }).delete((req, res) => {
-        // TODO : delete user 
-        return res.json({ status: pending });
-    });
+        const id = Number(req.params.id);
+        const index = users.findIndex(u => u.id === id);
+        if (index === -1) return res.status(404).json({ status: 'error', message: 'User not found' });
 
+        users[index] = { ...users[index], ...req.body };
+        fs.writeFile('./MOCK_DATA.json', JSON.stringify(users), (err) => {
+            if (err) return res.status(500).json({ status: 'error', error: err.message });
+            return res.json({ status: 'success', id });
+        });
+    })
+    .delete((req, res) => {
+        const id = Number(req.params.id);
+        const index = users.findIndex(u => u.id === id);
+        if (index === -1) return res.status(404).json({ status: 'error', message: 'User not found' });
+
+        users.splice(index, 1);
+        fs.writeFile('./MOCK_DATA.json', JSON.stringify(users), (err) => {
+            if (err) return res.status(500).json({ status: 'error', error: err.message });
+            return res.json({ status: 'success', id });
+        });
+    });
 app.listen(PORT, () => { console.log(`Server is running on port ${PORT}`) });

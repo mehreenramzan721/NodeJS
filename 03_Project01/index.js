@@ -1,5 +1,5 @@
 const express = require('express');
-
+const fs = require('fs');
 
 const app = express();
 const PORT = 8622;
@@ -56,8 +56,9 @@ app.route('/api/users/:id')
     .patch((req, res) => {
         // TODO : update user 
         const body = req.body;
-    
-        return res.json({ status: pending });
+        users.push({ ...body, id: users.length + 1 });
+        fs.writeFile('./MOCK_DATA.json', JSON.stringify(users));
+        return res.json({ status: success, id: users.length });
     }).delete((req, res) => {
         // TODO : delete user 
         return res.json({ status: pending });

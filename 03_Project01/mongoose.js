@@ -2,13 +2,18 @@ const app = express();
 app.use(express.json());
 const PORT = 8622;
 
-// connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/Project1')
-.then(()=>console.log('Connected to MongoDB'))
-.catch((err)=>console.error('Error connecting to MongoDB:', err));
+const userRouter = require('./routes/user');
+
+const {connectToMongoDB} = require('./connection');
+const {logReqRes} = require('./middlewares'); 
+
+// mongoose connection
+connectToMongoDB('mongodb://127.0.0.1:27017/Project1');
 
 
-
-
+app.use(express.urlencoded({ extended: false }));
+app.use(logReqRes('log.txt'));
+// router connect
+app.use('/user', userRouter);
 
 app.listen(PORT, () => { console.log(`Server is running on port ${PORT}`) });

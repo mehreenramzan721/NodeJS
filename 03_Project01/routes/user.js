@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 // post 
-router.post('/api/users', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const body = req.body;
         if (!body || !body.first_name || !body.last_name || !body.email || !body.gender || !body.job_title) {
@@ -25,7 +25,7 @@ router.post('/api/users', async (req, res) => {
 });
 
 // get all users 
-router.get('/api/users', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const allDBUsers = await User.find();
         return res.status(200).json({ msg: 'All users fetched successfully', data: allDBUsers });
@@ -35,7 +35,7 @@ router.get('/api/users', async (req, res) => {
 });
 
 // others : 
-router.route('/api/users/:id')
+router.route('/:id')
     .get(async (req, res) => {
         try {
             const user = await User.findById(req.params.id);
@@ -70,3 +70,5 @@ router.route('/api/users/:id')
             return res.status(500).json({ status: 'error', message: err.message });
         }
     });
+
+module.exports = router;

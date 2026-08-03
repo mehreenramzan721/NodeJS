@@ -51,3 +51,7 @@ Mon Aug 03 2026 13:35:20 GMT+0500 (Pakistan Standard Time): POST , /api/users/5 
 Mon Aug 03 2026 13:35:36 GMT+0500 (Pakistan Standard Time): POST , /api/users/5 /api/users/5?first_name=Mehreen&last_name=abc&email=xyz%20@%20mail&gender=female&job_title=....
 
 Mon Aug 03 2026 13:36:06 GMT+0500 (Pakistan Standard Time): GET , /api/users /api/users
+
+Mon Aug 03 2026 13:41:48 GMT+0500 (Pakistan Standard Time): GET , /api/users /api/users
+
+Mon Aug 03 2026 13:42:07 GMT+0500 (Pakistan Standard Time): GET , /api/users/88 /api/users/88?first_name=Mehreen&last_name=Ramzan

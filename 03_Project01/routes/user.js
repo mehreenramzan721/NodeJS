@@ -2,6 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 
+const { handleGetAllUsers ,getUserById } = require('../controllers/user');
+
 // post 
 router.post('/', async (req, res) => {
     try {
@@ -25,18 +27,13 @@ router.post('/', async (req, res) => {
 });
 
 // get all users 
-router.get('/', async (req, res) => {
-    try {
-        const allDBUsers = await User.find();
-        return res.status(200).json({ msg: 'All users fetched successfully', data: allDBUsers });
-    } catch (err) {
-        return res.status(500).json({ status: 'error', message: err.message });
-    }
-});
+router.get('/', handleGetAllUsers) ;
+
 
 // others : 
 router.route('/:id')
-    .get(async (req, res) => {
+    .get(handleGetUserById)
+    .patch(async (req, res) => {
         try {
             const user = await User.findById(req.params.id);
             if (!user) {

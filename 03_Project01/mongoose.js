@@ -1,3 +1,5 @@
+
+const express = require('express');
 const app = express();
 app.use(express.json());
 const PORT = 8622;
@@ -6,6 +8,7 @@ const userRouter = require('./routes/user');
 
 const {connectToMongoDB} = require('./connection');
 const {logReqRes} = require('./middlewares'); 
+
 
 // mongoose connection
 connectToMongoDB('mongodb://127.0.0.1:27017/Project1');

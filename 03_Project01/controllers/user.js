@@ -7,7 +7,7 @@ async function handleGetAllUsers(req, res) {
 
 async function handleGetUserById(req, res) {
     try {
-        const user = await User.findById(req.params.id);
+        const user = await Users.findById(req.params.id);
         if (!user) {
             return res.status(404)
                 .json({ status: 'error', message: 'User not found' });
@@ -20,7 +20,7 @@ async function handleGetUserById(req, res) {
 
 async function handleUpdateUserbyId(req, res) {
     try {
-        const updatedUser = await User.findByIdAndUpdate(req.params.id, { lastName: "changed" }, { new: true });
+        const updatedUser = await Users.findByIdAndUpdate(req.params.id, { lastName: "changed" }, { new: true });
         if (!updatedUser) {
             return res.status(404).json({ status: 'error', message: 'User not found' });
         }
@@ -32,7 +32,7 @@ async function handleUpdateUserbyId(req, res) {
 
 async function handleDeleteUserById(req, res) {
     try {
-        const user = await User.findByIdAndDelete(req.params.id)
+        const user = await Users.findByIdAndDelete(req.params.id)
         if (!user) {
             return res.status(404).json({ status: 'error', message: 'User not found' });
         }
@@ -48,7 +48,7 @@ async function handleCreateUser(req, res) {
         if (!body || !body.first_name || !body.last_name || !body.email || !body.gender || !body.job_title) {
             return res.status(400).json({ status: 'error', message: 'Missing required fields' });
         }
-        const result = await User.create({
+        const result = await Users.create({
             firstName: body.first_name,
             lastName: body.last_name,
             email: body.email,

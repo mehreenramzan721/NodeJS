@@ -7,7 +7,7 @@ const PORT = 8622;
 const userRouter = require('./routes/user');
 
 const { connectToMongoDB } = require('./connection');
-const { logReqRes } = require('./middlewares');
+const  {logReqRes}  = require('./middlewares');
 
 
 // mongoose connection

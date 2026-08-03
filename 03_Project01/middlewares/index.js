@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 function logReqRes(fileName){
     return function(req, res, next){
         fs.appendFile(fileName, `\n${new Date()}: ${req.method} , ${req.path} ${req.url}\n`, (err) => {
@@ -11,4 +13,4 @@ function logReqRes(fileName){
     }
 }
 
-module.exports = logReqRes;
+module.exports = {logReqRes};

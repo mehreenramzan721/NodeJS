@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 
 const urlRouter = require('./routes/url');
 const URL = require('./models/url');
@@ -11,7 +12,8 @@ app.use(express.json());
 
 app.use("/url",urlRouter);
 
-
+app.set('view engine', 'ejs');
+app.set('views', path.resolve('./views'));
     
 connectToMongoDB('mongodb://localhost:27017/shorturl');
 

@@ -5,10 +5,11 @@ const router = express.Router();
 const { handleGetAllUsers ,handleGetUserById, handleCreateUser ,handleUpdateUserbyId, handleDeleteUserById } = require('../controllers/user');
 
 // post 
-router.post('/', handleCreateUser);
 
 // get all users 
-router.get('/', handleGetAllUsers) ;
+router.route('/')
+    .get(handleGetAllUsers)
+    .post(handleCreateUser);
 
 
 // others : 

@@ -57,7 +57,7 @@ async function handleCreateUser(req, res) {
 
         });
         console.log(result)
-        return res.status(201).json({ msg: 'User created successfully' });
+        return res.status(201).json({ msg: 'User created successfully', id:result._id });
     } catch (err) {
         return res.status(500).json({ status: 'error', message: err.message });
     }

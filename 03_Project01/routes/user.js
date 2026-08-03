@@ -2,7 +2,14 @@ const express = require('express');
 
 const router = express.Router();
 
-const { handleGetAllUsers ,handleGetUserById, handleCreateUser ,handleUpdateUserbyId, handleDeleteUserById } = require('../controllers/user');
+const
+    {
+        handleGetAllUsers,
+        handleGetUserById,
+        handleCreateUser,
+        handleUpdateUserbyId,
+        handleDeleteUserById
+    } = require('../controllers/user');
 
 // post 
 

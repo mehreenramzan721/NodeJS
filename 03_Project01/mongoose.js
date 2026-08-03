@@ -21,6 +21,6 @@ app.use(logReqRes('log.txt'));
 
 
 // router connect
-app.use('/api/user', userRouter);
+app.use('/api/users', userRouter);
 
 app.listen(PORT, () => { console.log(`Server is running on port ${PORT}`) });

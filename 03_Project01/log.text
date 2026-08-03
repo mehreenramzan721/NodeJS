@@ -55,3 +55,9 @@ Mon Aug 03 2026 13:36:06 GMT+0500 (Pakistan Standard Time): GET , /api/users /ap
 Mon Aug 03 2026 13:41:48 GMT+0500 (Pakistan Standard Time): GET , /api/users /api/users
 
 Mon Aug 03 2026 13:42:07 GMT+0500 (Pakistan Standard Time): GET , /api/users/88 /api/users/88?first_name=Mehreen&last_name=Ramzan
+
+Mon Aug 03 2026 13:44:38 GMT+0500 (Pakistan Standard Time): GET , /api/users /api/users
+
+Mon Aug 03 2026 13:44:49 GMT+0500 (Pakistan Standard Time): GET , /api/users/88 /api/users/88?first_name=Mehreen&last_name=Ramzan
+
+Mon Aug 03 2026 13:44:56 GMT+0500 (Pakistan Standard Time): PATCH , /api/users/88 /api/users/88?first_name=Mehreen&last_name=Ramzan

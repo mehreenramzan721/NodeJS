@@ -1,5 +1,4 @@
 const express = require('express');
-const fs = require('fs');
 const mongoose = require('mongoose');
 const app = express();
 app.use(express.json());
@@ -57,7 +56,7 @@ app.post('/api/users', async(req, res) => {
 });
 
 // get all users 
-app.get('/Users', async(req, res)=>{
+app.get('/api/users', async(req, res)=>{
     try {
         const allDBUsers = await User.find();
         return res.status(200).json({msg: 'All users fetched successfully', data: allDBUsers});

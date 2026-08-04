@@ -6,7 +6,7 @@ const urlRouter = require('./routes/url');
 const staticRoute = require('./routes/staticrouter');
 const userRoute = require('./routes/user')
 
-const {restricttologinUserOnly} = require('./middleware/Auth')
+const {restricttologinUserOnly, checkAuth} = require('./middleware/Auth')
 
 
 const URL = require('./models/url');
@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/url", restricttologinUserOnly, urlRouter);
 app.use('/', staticRoute);
-app.use('/user',userRoute);
+app.use('/user', checkAuth ,userRoute);
 
 
 
@@ -32,4 +32,3 @@ app.set('views', path.resolve('./views'));
 connectToMongoDB('mongodb://localhost:27017/shorturl');
 
 app.listen(PORT, () => { console.log(`Server is running on port ${PORT}`) });
-

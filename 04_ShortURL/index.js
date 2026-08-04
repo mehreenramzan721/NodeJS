@@ -6,7 +6,7 @@ const urlRouter = require('./routes/url');
 const staticRoute = require('./routes/staticrouter');
 const userRoute = require('./routes/user')
 
-const {restricttologinUserOnly, checkAuth} = require('./middleware/Auth')
+const { restricttologinUserOnly, checkAuth } = require('./middleware/Auth')
 
 
 const URL = require('./models/url');
@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/url", restricttologinUserOnly, urlRouter);
 app.use('/', staticRoute);
-app.use('/user', checkAuth ,userRoute);
+app.use('/user', checkAuth, userRoute);
 
 
 

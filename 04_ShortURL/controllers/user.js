@@ -1,25 +1,29 @@
-const User = require('../models/user')
+const User = require('../models/user');
 
 async function handleUserSignUp(req, res){
-    const {name , email , password} = req.body;
-    await User.create({
-        name,
-        email,
-        password
-    });
-    return res.redirect("/");
+    try {
+        const {name, email, password} = req.body;
+        await User.create({ name, email, password });
+        return res.render("home");
+    } catch (err) {
+        return res.status(400).render("signup", { error: "Signup failed. Email may already be in use." });
+    }
 }
 
 async function handleUserLogin(req, res){
-    const {email , password} = req.body;
-    const user = await User.findOne(email, password);
-    if(!user) return res.render('login',{
-        error:"Invalid username or password"
-    })
-    return res.redirect("/");
+    try {
+        const {email, password} = req.body;
+        const user = await User.findOne({ email, password });
+        if (!user) {
+            return res.status(400).render("login", { error: "Invalid email or password" });
+        }
+        return res.render("home");
+    } catch (err) {
+        return res.status(500).render("login", { error: "Something went wrong" });
+    }
 }
 
-module.exports ={
+module.exports = {
     handleUserSignUp,
     handleUserLogin
 }

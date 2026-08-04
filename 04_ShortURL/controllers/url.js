@@ -10,22 +10,22 @@ async function handleGenerateNewShortUrl(req, res) {
         redirectURL: body.url,
         visitHistory: []
     });
-    res.json({ Id: shortID });
+    res.render('home', { shortId: shortID });
 }
 
 async function handleRedirectToOriginalUrl(req, res) {
     const shortId = req.params.shortId;
-    const entry = await URL.findOneAndUpdate({
-        shortId
-    }, {
-        $push: {
-            visitedHistory: {
-                timestamp: Date.now()
+    const entry = await Url.findOneAndUpdate(
+        { shortId },
+        {
+            $push: {
+                visitHistory: {
+                    timestamp: Date.now()
+                }
             }
         }
-    })
+    );
     res.redirect(entry.redirectURL);
-
 }
 
 async function handleGetAnalytics(req, res) {

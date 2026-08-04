@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SignUp </title>
 </head>
+
 <body>
-    
+    <h1>Signup</h1>
+    <form method="post" action="/user">
+        <label for="name">FullName</label>
+        <input type="text" required name="name" />
+        <label for="email">Email</label>
+        <input type="text" required name="email" />
+        <label for="password">Password</label>
+        <input type="text" required name="password" />
+
+        <button type="submit">Signup</button>
+    </form>
+
 </body>
+
 </html>

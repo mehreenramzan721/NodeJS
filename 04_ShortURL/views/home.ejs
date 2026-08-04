@@ -23,7 +23,8 @@
 
     <% if (locals.shortId) { %>
         <p>URL Generated: <a href="http://localhost:8000/url/<%= shortId %>" target="_blank">http://localhost:8000/url/
-                <%= shortId %></a></p>
+                <%= shortId %>
+            </a></p>
         <% } %>
 
             <div>
@@ -52,7 +53,7 @@
                                         <%= url.shortId %>
                                     </td>
                                     <td>
-                                        <%= url.redirectURl %>
+                                        <%= url.redirectURL %>
                                     </td>
                                     <td>
                                         <%= url.visitHistory.length %>

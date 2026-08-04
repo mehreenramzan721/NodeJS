@@ -16,24 +16,22 @@
 </head>
 <body>
 
-    <!-- <h1>Hey from server</h1>
-    <% urls.forEach((url) => { %>
-    <li><%= url.shortId %> → <%= url.redirectURL %></li>
-<% }); %> -->
-
     <h1>URL Shortener</h1>
-    
-    <% if(locals.shortId) %>
-    <p> URL Generated : http://localhost/url/<%=shortId %> </p>
+
+    <% if (locals.shortId) { %>
+        <p>URL Generated: <a href="http://localhost:8000/url/<%= shortId %>" target="_blank">http://localhost:8000/url/<%= shortId %></a></p>
+    <% } %>
+
     <div>
         <form method="POST" action="/url">
             <label for="originalUrl">Enter URL to shorten:</label>
             <input 
-            type="text" 
-            name="url"
-            placeholder="Enter URL" />
+                type="text" 
+                name="url"
+                placeholder="Enter URL" />
             <button type="submit">Generate</button>
         </form>
     </div>
+
 </body>
 </html>

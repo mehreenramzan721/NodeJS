@@ -6,6 +6,12 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+         roles:{
+            type: String,
+            required: true ,
+            default: "NORMAL",
+
+    },
         email: {
             type: String,
             required: true,

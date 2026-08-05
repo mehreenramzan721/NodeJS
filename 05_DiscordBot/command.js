@@ -1,5 +1,8 @@
+const { REST, Routes } = require('discord.js');
 
-import { REST, Routes } from 'discord.js';
+// 1. Put your actual Client ID and Token inside these quotes
+const CLIENT_ID = '1534555883726569673'; 
+const TOKEN = 'MTUzNDU1NTg4MzcyNjU2OTY3Mw.GMAM2A.mJ92eZJDwsiUAc-mYgvMI9YcxvPLbaWMg--l4c';    
 
 const commands = [
   {
@@ -7,17 +10,21 @@ const commands = [
     description: 'Replies with Pong!',
   },
 ];
-// enter the same login token here 
-const rest = new REST({ version: '10' }).setToken('');
 
-try {
-  console.log('Started refreshing application (/) commands.');
+const rest = new REST({ version: '10' }).setToken(TOKEN);
 
-  await rest.put(Routes.applicationCommands(CLIENT_ID), { body: commands });
+// 2. We wrap the await call inside an async function so it doesn't crash
+async function registerCommands() {
+  try {
+    console.log('Started refreshing application (/) commands.');
 
-  console.log('Successfully reloaded application (/) commands.');
-} catch (error) {
-  console.error(error);
+    await rest.put(Routes.applicationCommands(CLIENT_ID), { body: commands });
+
+    console.log('Successfully reloaded application (/) commands.');
+  } catch (error) {
+    console.error('There was an error:', error);
+  }
 }
 
-//we have to register our command file by writing node command.js on terminal
+// 3. Run the function
+registerCommands();

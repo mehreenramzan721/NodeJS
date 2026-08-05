@@ -8,6 +8,12 @@ const client = new Client({
 
 client.on('messageCreate', message => {
     if(message.author.bot) return ;
+    if(message.content.startsWith('create')){
+        const url = message.content.split('create')[1];
+        return message.reply({
+            content: "Generating short url for :" + url,
+        })
+    }
     message.reply({
         content: "Hi from Bot"
     })

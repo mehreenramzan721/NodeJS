@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(checkForAuthentication);
 
 // app.use("/url", restricttologinUserOnly, urlRouter);
-app.use("/url", restrictTo(["NORMAL"]), urlRouter);
+app.use("/url", restrictTo(["NORMAL", "ADMIN"]), urlRouter);
 
 app.use('/', staticRoute);
 app.use('/user', userRoute);

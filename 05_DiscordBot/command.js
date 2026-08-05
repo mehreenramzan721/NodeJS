@@ -1,8 +1,6 @@
 const { REST, Routes } = require('discord.js');
 
 // 1. Put your actual Client ID and Token inside these quotes
-const CLIENT_ID = '1534555883726569673'; 
-const TOKEN = 'MTUzNDU1NTg4MzcyNjU2OTY3Mw.GMAM2A.mJ92eZJDwsiUAc-mYgvMI9YcxvPLbaWMg--l4c';    
 
 const commands = [
   {

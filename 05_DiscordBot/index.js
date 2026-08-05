@@ -25,4 +25,4 @@ client.on('interactionCreate', interaction =>{
     })
 })
 // pass the token that we copied from the bot 
-client.login('MTUzNDU1NTg4MzcyNjU2OTY3Mw.GMAM2A.mJ92eZJDwsiUAc-mYgvMI9YcxvPLbaWMg--l4c')
+client.login(token)

@@ -3,7 +3,7 @@ require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
-const cookiePaser = require("cookie-parser");
+const cookieParser = require("cookie-parser");
 
 const Blog = require("./models/blog");
 
@@ -25,7 +25,7 @@ app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 
 app.use(express.urlencoded({ extended: false }));
-app.use(cookiePaser());
+app.use(cookieParser());
 app.use(checkForAuthenticationCookie("token"));
 app.use(express.static(path.resolve("./public")));
 

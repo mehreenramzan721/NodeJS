@@ -33,7 +33,7 @@ const userSchema = new Schema(
     { timestamps: true }
 );
 
-userSchema.pre("save", function (next) {
+userSchema.pre("save", async function () {
     const user = this;
 
     if (!user.isModified("password")) return;
@@ -43,10 +43,8 @@ userSchema.pre("save", function (next) {
         .update(user.password)
         .digest("hex");
 
-    this.salt = salt;
-    this.password = hashedPassword;
-
-    next();
+    user.salt = salt;
+    user.password = hashedPassword;
 });
 
 userSchema.static(

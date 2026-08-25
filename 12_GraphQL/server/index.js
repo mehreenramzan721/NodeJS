@@ -17,7 +17,11 @@ async function startServer() {
         getTodos: [Todo]
     }
 `,
-        resolvers:{}
+        resolvers: {
+    Query: {
+        getTodos: () => [{ id: 1, title: "Something", completed: false }]
+    }
+}
     })
 
     // middle wares

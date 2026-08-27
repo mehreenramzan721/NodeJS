@@ -8,7 +8,10 @@ const PORT = Number(process.env.PORT) || 8000;
 
 // Create graphql server 
 const gqlserver = new ApolloServer({
-    typeDefs: ``,
+    typeDefs: `
+    type Mutations{
+    createUser();
+    }`,
     resolvers:{}
 })
 //start the gqlserver

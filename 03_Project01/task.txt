@@ -1,0 +1,21 @@
+REST API _ support json 
+
+GET/users   -> list all users it basically renders an html doc 
+
+GET/ api/ users - > same work but its specify that the data is json
+
+GET/api/ users/2 -> get the user with id 2
+
+POST /api/ users  ->  create a user
+
+PATCH/api/ user/id -> edit the user with the id
+
+DELETE/api/ user/ id -> delete the user with id
+
+id is actually a dynamic parameter here so
+
+app.get('/api/users/:id', (req, res)=>{
+    const id = Number(req.params.id);
+    const user = users.find(u => u.id === id);
+    return res.json(user);
+});

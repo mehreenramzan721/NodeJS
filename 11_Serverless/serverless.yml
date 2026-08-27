@@ -1,0 +1,14 @@
+service : Api-aws-http
+frameworkVersion: "4"
+
+provider:
+  name: aws
+  runtime: nodejs24.x
+  region : ap-south-1
+functions:
+  HelloFtn:
+    handler:hello.handler
+    events:
+      - httpApi:
+          path: /
+          method: get

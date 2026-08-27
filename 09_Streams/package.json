@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "express": "^5.2.1",
+    "express-status-monitor": "^1.2.3"
+  }
+}

@@ -319,6 +319,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@prisma/client-runtime-utils@npm:7.10.0":
+  version: 7.10.0
+  resolution: "@prisma/client-runtime-utils@npm:7.10.0"
+  checksum: 10c0/2c322f66834b7d7ae7f7a6ae1fded8187f098705a9d1789f7aac0faa89fd4ff82ae6f2bc00f352e3944ebc7f1824b7217756ac02eaee13bcfee512d17ac4da30
+  languageName: node
+  linkType: hard
+
+"@prisma/client@npm:^7.10.0":
+  version: 7.10.0
+  resolution: "@prisma/client@npm:7.10.0"
+  dependencies:
+    "@prisma/client-runtime-utils": "npm:7.10.0"
+  peerDependencies:
+    prisma: "*"
+    typescript: ">=5.4.0"
+  peerDependenciesMeta:
+    prisma:
+      optional: true
+    typescript:
+      optional: true
+  checksum: 10c0/8ed4afa51e26220fa3256ab1d3ab3e394e83157637b6dcb638980c2ebd1b5caba368e81985122a23495f62e3d25cc99b3643bfcc931a270c1334e84dbd94e88b
+  languageName: node
+  linkType: hard
+
 "@prisma/config@npm:7.10.0":
   version: 7.10.0
   resolution: "@prisma/config@npm:7.10.0"
@@ -1045,6 +1069,7 @@ __metadata:
   dependencies:
     "@apollo/server": "npm:^5.5.1"
     "@as-integrations/express5": "npm:^1.1.2"
+    "@prisma/client": "npm:^7.10.0"
     "@types/express": "npm:^5.0.6"
     "@types/node": "npm:^26.4.0"
     dotenv: "npm:^17.4.2"
